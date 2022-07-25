@@ -1,4 +1,6 @@
 import  traceanalyzer as tr
+import matplotlib.pyplot as plt
+
 #end-to-end delay
 eedelay1=tr.Eedelay('out1.tr','33')
 eedelay2=tr.Eedelay('out2.tr','33')
