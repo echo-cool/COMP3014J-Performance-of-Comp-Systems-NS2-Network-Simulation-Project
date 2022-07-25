@@ -5,6 +5,7 @@ eedelay2=tr.Eedelay('out2.tr','33')
 eedelay2.sample()#eedelay2.sample(1.5) for sampling with step=1.5
 eedelay1.plot()
 eedelay2.plot()
+plt.show()
 #getting data
 time=eedelay2.time_sample
 eedelay=eedelay2.eedelay_sample
