@@ -41,7 +41,7 @@ $ns duplex-link-op $n4 $n5 orient right-up
 $ns duplex-link-op $n4 $n6 orient right-down
 
 set source1 [new Agent/TCP/Vegas]
-$ns at 0 "$source1 select_ca vegas"
+#$ns at 0 "$source1 select_ca vegas"
 $source1 set class_ 2
 $source1 set ttl_ 64
 $source1 set window_ 1000
@@ -54,7 +54,7 @@ $ns connect $source1 $sink1
 $source1 set fid_ 1
 
 set source2 [new Agent/TCP/Vegas]
-$ns at 0.0 "$source2 select_ca vegas"
+#$ns at 0.0 "$source2 select_ca vegas"
 $source2 set class_ 1
 $source2 set ttl_ 64
 $source2 set window_ 1000
