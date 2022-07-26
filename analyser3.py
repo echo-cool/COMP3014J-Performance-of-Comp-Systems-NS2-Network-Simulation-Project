@@ -2,14 +2,14 @@ import matplotlib.pyplot as plt
 from math import ceil
 import os
 
-cwndDict04 = {"reno": [0] * 1001, "cubic": [0] * 1001, "yeah": [0] * 1001}
-cwndDict15 = {"reno": [0] * 1001, "cubic": [0] * 1001, "yeah": [0] * 1001}
-goodputDict04 = {"reno": [0] * 1001, "cubic": [0] * 1001, "yeah": [0] * 1001}
-goodputDict15 = {"reno": [0] * 1001, "cubic": [0] * 1001, "yeah": [0] * 1001}
-rttDict04 = {"reno": [0] * 1001, "cubic": [0] * 1001, "yeah": [0] * 1001}
-rttDict15 = {"reno": [0] * 1001, "cubic": [0] * 1001, "yeah": [0] * 1001}
-lostDict04 = {"reno": [0] * 1001, "cubic": [0] * 1001, "yeah": [0] * 1001}
-lostDict15 = {"reno": [0] * 1001, "cubic": [0] * 1001, "yeah": [0] * 1001}
+cwndDict04 = {"reno": [0] * 1001, "cubic": [0] * 1001, "yeah": [0] * 1001, "vegas": [0] * 1001}
+cwndDict15 = {"reno": [0] * 1001, "cubic": [0] * 1001, "yeah": [0] * 1001, "vegas": [0] * 1001}
+goodputDict04 = {"reno": [0] * 1001, "cubic": [0] * 1001, "yeah": [0] * 1, "vegas": [0] * 1001}
+goodputDict15 = {"reno": [0] * 1001, "cubic": [0] * 1001, "yeah": [0] * 1, "vegas": [0] * 1001}
+rttDict04 = {"reno": [0] * 1001, "cubic": [0] * 1001, "yeah": [0] * 1001, "vegas": [0] * 1001}
+rttDict15 = {"reno": [0] * 1001, "cubic": [0] * 1001, "yeah": [0] * 1001, "vegas": [0] * 1001}
+lostDict04 = {"reno": [0] * 1001, "cubic": [0] * 1001, "yeah": [0] * 1001, "vegas": [0] * 1001}
+lostDict15 = {"reno": [0] * 1001, "cubic": [0] * 1001, "yeah": [0] * 1001, "vegas": [0] * 1001}
 
 
 def splitFile(filename):
@@ -79,75 +79,89 @@ def splitRtt(data):
 				rtt15[ceil(float(line[0]))] = float(line[-1])
 	return adjustArray(rtt04, -1), adjustArray(rtt15, -1)
 
-def addCwndDatas(renoData, cubicData, yeahData):
+def addCwndDatas(renoData, cubicData, yeahData,vegasData):
 	global cwndDict04, cwndDict15
 	renoCwnds04, renoCwnds15 = splitCWND(renoData)
 	cubicCwnds04, cubicCwnds15 = splitCWND(cubicData)
 	yeahCwnds04, yeahCwnds15 = splitCWND(yeahData)
+	vegasCwnds04, vegasCwnds15 = splitCWND(vegasData)
 
 	for i in range(1001):
 		cwndDict04['reno'][i] += renoCwnds04[i]
 		cwndDict04['cubic'][i] += cubicCwnds04[i]
 		cwndDict04['yeah'][i] += yeahCwnds04[i]
+		cwndDict04['vegas'][i] += vegasCwnds04[i]
 		cwndDict15['reno'][i] += renoCwnds15[i]
 		cwndDict15['cubic'][i] += cubicCwnds15[i]
 		cwndDict15['yeah'][i] += yeahCwnds15[i]
+		cwndDict15['vegas'][i] += vegasCwnds15[i]
 
-def addGoodputDatas(renoData, cubicData, yeahData):
+def addGoodputDatas(renoData, cubicData, yeahData,vegasData):
 	global goodputDict04, goodputDict15
 	renoGoodputs04, renoGoodputs15 = splitAcks(renoData)
 	cubicGoodputs04, cubicGoodputs15 = splitAcks(cubicData)
 	yeahGoodputs04, yeahGoodputs15 = splitAcks(yeahData)
+	vegasGoodputs04, vegasGoodputs15 = splitAcks(vegasData)
 
 	for i in range(1001):
 		goodputDict04['reno'][i] += renoGoodputs04[i]
 		goodputDict04['cubic'][i] += cubicGoodputs04[i]
 		goodputDict04['yeah'][i] += yeahGoodputs04[i]
+		goodputDict04['vegas'][i] += vegasGoodputs04[i]
 		goodputDict15['reno'][i] += renoGoodputs15[i]
 		goodputDict15['cubic'][i] += cubicGoodputs15[i]
 		goodputDict15['yeah'][i] += yeahGoodputs15[i]
+		goodputDict015['vegas'][i] += vegasGoodputs15[i]
 
-def addRttDatas(renoData, cubicData, yeahData):
+def addRttDatas(renoData, cubicData, yeahData,vegasData):
 	global rttDict04, rttDict15
 	renoRtts04, renoRtts15 = splitRtt(renoData)
 	cubicRtts04, cubicRtts15 = splitRtt(cubicData)
 	yeahRtts04, yeahRtts15 = splitRtt(yeahData)
+	vegasRtts04, vegasRtts15 = splitRtt(vegasData)
 
 	for i in range(1001):
 		rttDict04['reno'][i] += renoRtts04[i]
 		rttDict04['cubic'][i] += cubicRtts04[i]
 		rttDict04['yeah'][i] += yeahRtts04[i]
+		rttDict04['vegas'][i] += vegasRtts04[i]
 		rttDict15['reno'][i] += renoRtts15[i]
 		rttDict15['cubic'][i] += cubicRtts15[i]
 		rttDict15['yeah'][i] += yeahRtts15[i]
+		rttDict15['vegas'][i] += vegasRtts15[i]
 
-def addLostDatas(renoData, cubicData, yeahData):
+def addLostDatas(renoData, cubicData, yeahData,vegasData):
 	global lostDict04, lostDict15
 	renoLosts04, renoLosts15 = splitLost(renoData)
 	cubicLosts04, cubicLosts15 = splitLost(cubicData)
 	yeahLosts04, yeahLosts15 = splitLost(yeahData)
+	vegasLosts04, vegasLosts15 = splitLost(vegasData)
 
 	for i in range(1001):
 		lostDict04['reno'][i] += renoLosts04[i]
 		lostDict04['cubic'][i] += cubicLosts04[i]
 		lostDict04['yeah'][i] += yeahLosts04[i]
+		lostDict04['vegas'][i] += vegasLosts04[i]
 		lostDict15['reno'][i] += renoLosts15[i]
 		lostDict15['cubic'][i] += cubicLosts15[i]
 		lostDict15['yeah'][i] += yeahLosts15[i]
+		lostDict15['vegas'][i] += vegasLosts15[i]
 
 def runOneEpoch():
 	os.system("ns renoCode.tcl")
 	os.system("ns cubicCode.tcl")
 	os.system("ns yeahCode.tcl")
+	os.system("ns vegasCode.tcl")
 
 	renoData = splitFile('renoTrace.tr')
 	cubicData = splitFile('cubicTrace.tr')
 	yeahData = splitFile('yeahTrace.tr')
+	yeahData = splitFile('vegasTrace.tr')
 
-	addCwndDatas(renoData, cubicData, yeahData)
-	addGoodputDatas(renoData, cubicData, yeahData)
-	addRttDatas(renoData, cubicData, yeahData)
-	addLostDatas(renoData, cubicData, yeahData)
+	addCwndDatas(renoData, cubicData, yeahData, vegasData)
+	addGoodputDatas(renoData, cubicData, yeahData, vegasData)
+	addRttDatas(renoData, cubicData, yeahData, vegasData)
+	addLostDatas(renoData, cubicData, yeahData, vegasData)
 
 def calcAvgVars():
 	global cwndDict04, cwndDict15, goodputDict04, goodputDict15
