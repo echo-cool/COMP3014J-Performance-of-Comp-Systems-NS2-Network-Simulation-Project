@@ -4,8 +4,8 @@ import os
 
 cwndDict04 = {"reno": [0] * 1001, "cubic": [0] * 1001, "yeah": [0] * 1001, "vegas": [0] * 1001}
 cwndDict15 = {"reno": [0] * 1001, "cubic": [0] * 1001, "yeah": [0] * 1001, "vegas": [0] * 1001}
-goodputDict04 = {"reno": [0] * 1001, "cubic": [0] * 1001, "yeah": [0] * 1, "vegas": [0] * 1001}
-goodputDict15 = {"reno": [0] * 1001, "cubic": [0] * 1001, "yeah": [0] * 1, "vegas": [0] * 1001}
+goodputDict04 = {"reno": [0] * 1001, "cubic": [0] * 1001, "yeah": [0] * 1001, "vegas": [0] * 1001}
+goodputDict15 = {"reno": [0] * 1001, "cubic": [0] * 1001, "yeah": [0] * 1001, "vegas": [0] * 1001}
 rttDict04 = {"reno": [0] * 1001, "cubic": [0] * 1001, "yeah": [0] * 1001, "vegas": [0] * 1001}
 rttDict15 = {"reno": [0] * 1001, "cubic": [0] * 1001, "yeah": [0] * 1001, "vegas": [0] * 1001}
 lostDict04 = {"reno": [0] * 1001, "cubic": [0] * 1001, "yeah": [0] * 1001, "vegas": [0] * 1001}
