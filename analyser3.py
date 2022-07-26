@@ -111,7 +111,7 @@ def addGoodputDatas(renoData, cubicData, yeahData,vegasData):
 		goodputDict15['reno'][i] += renoGoodputs15[i]
 		goodputDict15['cubic'][i] += cubicGoodputs15[i]
 		goodputDict15['yeah'][i] += yeahGoodputs15[i]
-		goodputDict015['vegas'][i] += vegasGoodputs15[i]
+		goodputDict15['vegas'][i] += vegasGoodputs15[i]
 
 def addRttDatas(renoData, cubicData, yeahData,vegasData):
 	global rttDict04, rttDict15
