@@ -103,7 +103,7 @@ def addGoodputDatas(renoData, cubicData, yeahData,vegasData):
 	yeahGoodputs04, yeahGoodputs15 = splitAcks(yeahData)
 	vegasGoodputs04, vegasGoodputs15 = splitAcks(vegasData)
 
-	for i in range(1001):
+	for i in range(2000):
 		goodputDict04['reno'][i] += renoGoodputs04[i]
 		goodputDict04['cubic'][i] += cubicGoodputs04[i]
 		goodputDict04['yeah'][i] += yeahGoodputs04[i]
