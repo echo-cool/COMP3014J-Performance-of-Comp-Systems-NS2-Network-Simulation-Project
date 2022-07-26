@@ -8,8 +8,8 @@ goodputDict04 = {"reno": [0] * 1001, "cubic": [0] * 1001, "yeah": [0] * 1001, "v
 goodputDict15 = {"reno": [0] * 1001, "cubic": [0] * 1001, "yeah": [0] * 1001, "vegas": [0] * 1001}
 rttDict04 = {"reno": [0] * 1001, "cubic": [0] * 1001, "yeah": [0] * 1001, "vegas": [0] * 1001}
 rttDict15 = {"reno": [0] * 1001, "cubic": [0] * 1001, "yeah": [0] * 1001, "vegas": [0] * 1001}
-lostDict04 = {"reno": [0] * 1001, "cubic": [0] * 1001, "yeah": [0] * 1001, "vegas": [0] * 1001}
-lostDict15 = {"reno": [0] * 1001, "cubic": [0] * 1001, "yeah": [0] * 1001, "vegas": [0] * 1001}
+lossDict04 = {"reno": [0] * 1001, "cubic": [0] * 1001, "yeah": [0] * 1001, "vegas": [0] * 1001}
+lossDict15 = {"reno": [0] * 1001, "cubic": [0] * 1001, "yeah": [0] * 1001, "vegas": [0] * 1001}
 
 
 def splitFile(filename):
@@ -53,20 +53,20 @@ def splitAcks(data):
 				acks15[ceil(float(line[0]))] = int(line[-1])
 	return adjustArray(acks04, 'none'), adjustArray(acks15, 'none')
 
-def splitLost(data):
-	lost04 = [-1] * 1001
-	lastLost04 = 0
-	lost15 = [-1] * 1001
-	lastLost15 = 0
+def splitloss(data):
+	loss04 = [-1] * 1001
+	lastloss04 = 0
+	loss15 = [-1] * 1001
+	lastloss15 = 0
 	for line in data:
 		if line[0] == 'd':
 			if line[-4][0] == '0':
-				lastLost04 += 1
-				lost04[ceil(float(line[1]))] = lastLost04
+				lastloss04 += 1
+				loss04[ceil(float(line[1]))] = lastloss04
 			elif line[-4][0] == '1':
-				lastLost15 += 1
-				lost15[ceil(float(line[1]))] = lastLost15
-	return adjustArray(lost04, -1), adjustArray(lost15, -1)
+				lastloss15 += 1
+				loss15[ceil(float(line[1]))] = lastloss15
+	return adjustArray(loss04, -1), adjustArray(loss15, -1)
 
 def splitRtt(data):
 	rtt04 = [-1] * 1001
@@ -130,22 +130,22 @@ def addRttDatas(renoData, cubicData, yeahData,vegasData):
 		rttDict15['yeah'][i] += yeahRtts15[i]
 		rttDict15['vegas'][i] += vegasRtts15[i]
 
-def addLostDatas(renoData, cubicData, yeahData,vegasData):
-	global lostDict04, lostDict15
-	renoLosts04, renoLosts15 = splitLost(renoData)
-	cubicLosts04, cubicLosts15 = splitLost(cubicData)
-	yeahLosts04, yeahLosts15 = splitLost(yeahData)
-	vegasLosts04, vegasLosts15 = splitLost(vegasData)
+def addlossDatas(renoData, cubicData, yeahData,vegasData):
+	global lossDict04, lossDict15
+	renoloss04, renoloss15 = splitloss(renoData)
+	cubicloss04, cubicloss15 = splitloss(cubicData)
+	yeahloss04, yeahloss15 = splitloss(yeahData)
+	vegasloss04, vegasloss15 = splitloss(vegasData)
 
 	for i in range(1001):
-		lostDict04['reno'][i] += renoLosts04[i]
-		lostDict04['cubic'][i] += cubicLosts04[i]
-		lostDict04['yeah'][i] += yeahLosts04[i]
-		lostDict04['vegas'][i] += vegasLosts04[i]
-		lostDict15['reno'][i] += renoLosts15[i]
-		lostDict15['cubic'][i] += cubicLosts15[i]
-		lostDict15['yeah'][i] += yeahLosts15[i]
-		lostDict15['vegas'][i] += vegasLosts15[i]
+		lossDict04['reno'][i] += renoloss04[i]
+		lossDict04['cubic'][i] += cubicloss04[i]
+		lossDict04['yeah'][i] += yeahloss04[i]
+		lossDict04['vegas'][i] += vegasloss04[i]
+		lossDict15['reno'][i] += renoloss15[i]
+		lossDict15['cubic'][i] += cubicloss15[i]
+		lossDict15['yeah'][i] += yeahloss15[i]
+		lossDict15['vegas'][i] += vegasloss15[i]
 
 def runOneEpoch():
 	os.system("ns renoCode.tcl")
@@ -161,7 +161,7 @@ def runOneEpoch():
 	addCwndDatas(renoData, cubicData, yeahData, vegasData)
 	addGoodputDatas(renoData, cubicData, yeahData, vegasData)
 	addRttDatas(renoData, cubicData, yeahData, vegasData)
-	addLostDatas(renoData, cubicData, yeahData, vegasData)
+	addlossDatas(renoData, cubicData, yeahData, vegasData)
 
 def calcAvgVars():
 	global cwndDict04, cwndDict15, goodputDict04, goodputDict15
@@ -173,26 +173,12 @@ def calcAvgVars():
 			goodputDict15[key][i] /= 10
 			rttDict04[key][i] /= 10
 			rttDict15[key][i] /= 10
-			lostDict04[key][i] /= 10
-			lostDict15[key][i] /= 10
+			lossDict04[key][i] /= 10
+			lossDict15[key][i] /= 10
 
 def run():
 	runOneEpoch()
 
-def analyzeCWND():
-	global cwndDict04, cwndDict15
-	colors = ['c', 'm', 'y', 'g', 'b', 'r', 'k', 'k']
-	for key in cwndDict04.keys():
-		plt.plot(range(1001), cwndDict04[key], label=key+'04', c = colors[-1])
-		colors.pop()
-		plt.plot(range(1001), cwndDict15[key], label=key+'15', c = colors[-1])
-		colors.pop()
-
-	plt.xlabel("time") 
-	plt.ylabel("CWND") 
-	plt.title("CWND per second") 
-	plt.legend() 
-	plt.show() 
 
 def derivative(arr):
 	arr2 = [0] * len(arr)
@@ -224,42 +210,15 @@ def analyzeGoodPut():
 	plt.legend() 
 	plt.show() 
 
-	# colors = ['c', 'm', 'y', 'g', 'b', 'r']
-	# for key in goodputDict04.keys():
-	# 	plt.plot(range(1001),difference(goodputDict04[key]), label=key+'04', c = colors[-1])
-	# 	colors.pop()
-	# 	plt.plot(range(1001), difference(goodputDict15[key]), label=key+'15', c = colors[-1])
-	# 	colors.pop()
-
-	# plt.xlabel("time") 
-	# plt.ylabel("Goodput rate") 
-	# plt.title("Goodput rate per second") 
-	# plt.legend() 
-	# plt.show() 
 
 
-def analyzeRtt():
-	global rttDict04, rttDict15
+def analyzeloss():
+	global lossDict04, lossDict15
 	colors = ['c', 'm', 'y', 'g', 'b', 'r', 'k', 'k']
-	for key in rttDict04.keys():
-		plt.plot(range(1001), rttDict04[key], label=key+'04', c = colors[-1])
+	for key in lossDict04.keys():
+		plt.plot(range(1001),difference(lossDict04[key]), label=key+'04', c = colors[-1])
 		colors.pop()
-		plt.plot(range(1001), rttDict15[key], label=key+'15', c = colors[-1])
-		colors.pop()
-
-	plt.xlabel("time") 
-	plt.ylabel("RTT rate") 
-	plt.title("RTT rate per second") 
-	plt.legend() 
-	plt.show() 
-
-def analyzeLost():
-	global lostDict04, lostDict15
-	colors = ['c', 'm', 'y', 'g', 'b', 'r', 'k', 'k']
-	for key in lostDict04.keys():
-		plt.plot(range(1001),difference(lostDict04[key]), label=key+'04', c = colors[-1])
-		colors.pop()
-		plt.plot(range(1001), difference(lostDict15[key]), label=key+'15', c = colors[-1])
+		plt.plot(range(1001), difference(lossDict15[key]), label=key+'15', c = colors[-1])
 		colors.pop()
 
 	plt.xlabel("time") 
@@ -269,10 +228,10 @@ def analyzeLost():
 	plt.show() 
 
 	# colors = ['c', 'm', 'y', 'g', 'b', 'r']
-	# for key in lostDict04.keys():
-	# 	plt.plot(range(1001),difference(lostDict04[key]), label=key+'04', c = colors[-1])
+	# for key in lossDict04.keys():
+	# 	plt.plot(range(1001),difference(lossDict04[key]), label=key+'04', c = colors[-1])
 	# 	colors.pop()
-	# 	plt.plot(range(1001), difference(lostDict15[key]), label=key+'15', c = colors[-1])
+	# 	plt.plot(range(1001), difference(lossDict15[key]), label=key+'15', c = colors[-1])
 	# 	colors.pop()
 
 	# plt.xlabel("time") 
@@ -283,7 +242,6 @@ def analyzeLost():
 
 
 run()
-analyzeCWND()
 analyzeGoodPut()
-analyzeRtt()
-analyzeLost()
+
+analyzeloss()
