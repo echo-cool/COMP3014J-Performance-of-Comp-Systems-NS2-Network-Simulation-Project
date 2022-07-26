@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 
 #end-to-end delay
 eedelay1=tr.Eedelay('renoTrace.tr','0')
-eedelay2=tr.Eedelay('vrgasTrace.tr','0')
+eedelay2=tr.Eedelay('vegasTrace.tr','0')
 # eedelay1=tr.Eedelay('renoTrace.tr','0')
 # eedelay1=tr.Eedelay('renoTrace.tr','0')
 eedelay2.sample()#eedelay2.sample(1.5) for sampling with step=1.5
