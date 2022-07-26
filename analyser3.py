@@ -197,7 +197,7 @@ def difference(arr):
 def analyzeGoodPut():
 	global goodputDict04, goodputDict15
 
-	colors = ['c', 'm', 'y', 'g', 'b', 'r', 'k', 'k']
+	colors = ['k', 'k', 'y', 'g', 'b', 'r', 'c', 'm']
 	for key in goodputDict04.keys():
 		plt.plot(range(1001),derivative(goodputDict04[key]), label=key+'04', c = colors[-1])
 		colors.pop()
@@ -214,7 +214,7 @@ def analyzeGoodPut():
 
 def analyzeloss():
 	global lossDict04, lossDict15
-	colors = ['c', 'm', 'y', 'g', 'b', 'r', 'k', 'k']
+	colors = ['k', 'k', 'y', 'g', 'b', 'r', 'c', 'm']
 	for key in lossDict04.keys():
 		plt.plot(range(1001),difference(lossDict04[key]), label=key+'04', c = colors[-1])
 		colors.pop()
