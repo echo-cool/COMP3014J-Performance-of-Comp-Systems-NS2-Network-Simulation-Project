@@ -2,11 +2,11 @@ import  traceanalyzer as tr
 import matplotlib.pyplot as plt
 
 #end-to-end delay
-eedelay1=tr.Eedelay('renoTrace.tr','2')
-eedelay2=tr.Eedelay('vegasTrace.tr','2')
+eedelay1=tr.Eedelay('renoTrace.tr','3')
+eedelay2=tr.Eedelay('vegasTrace.tr','3')
 # eedelay1=tr.Eedelay('renoTrace.tr','0')
 # eedelay1=tr.Eedelay('renoTrace.tr','0')
-eedelay2.sample()#eedelay2.sample(1.5) for sampling with step=1.5
+# eedelay2.sample()#eedelay2.sample(1.5) for sampling with step=1.5
 eedelay1.plot()
 eedelay2.plot()
 plt.show()
