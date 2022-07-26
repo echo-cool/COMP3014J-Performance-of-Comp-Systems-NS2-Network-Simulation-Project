@@ -181,7 +181,7 @@ def run():
 
 def analyzeCWND():
 	global cwndDict04, cwndDict15
-	colors = ['c', 'm', 'y', 'g', 'b', 'r']
+	colors = ['c', 'm', 'y', 'g', 'b', 'r', 'k', 'k']
 	for key in cwndDict04.keys():
 		plt.plot(range(1001), cwndDict04[key], label=key+'04', c = colors[-1])
 		colors.pop()
