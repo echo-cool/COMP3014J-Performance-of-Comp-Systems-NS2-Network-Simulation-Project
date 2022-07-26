@@ -227,18 +227,6 @@ def analyzeloss():
 	plt.legend() 
 	plt.show() 
 
-	# colors = ['c', 'm', 'y', 'g', 'b', 'r']
-	# for key in lossDict04.keys():
-	# 	plt.plot(range(1001),difference(lossDict04[key]), label=key+'04', c = colors[-1])
-	# 	colors.pop()
-	# 	plt.plot(range(1001), difference(lossDict15[key]), label=key+'15', c = colors[-1])
-	# 	colors.pop()
-
-	# plt.xlabel("time") 
-	# plt.ylabel("Packet loss rate") 
-	# plt.title("Packet loss rate per second") 
-	# plt.legend() 
-	# plt.show() 
 
 
 run()
