@@ -156,7 +156,7 @@ def runOneEpoch():
 	renoData = splitFile('renoTrace.tr')
 	cubicData = splitFile('cubicTrace.tr')
 	yeahData = splitFile('yeahTrace.tr')
-	yeahData = splitFile('vegasTrace.tr')
+	vegasData = splitFile('vegasTrace.tr')
 
 	addCwndDatas(renoData, cubicData, yeahData, vegasData)
 	addGoodputDatas(renoData, cubicData, yeahData, vegasData)
