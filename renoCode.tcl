@@ -90,6 +90,6 @@ $myftp2 attach-agent $source2
 $ns at 0.0 "$myftp2 start"
 $ns at 0.0 "$myftp1 start"
 
-$ns at 1000.0 "finish"
+$ns at 100.0 "finish"
 
 $ns run
