@@ -201,8 +201,8 @@ def analyzeGoodPut():
 	for key in goodputDict04.keys():
 		plt.plot(range(1001),derivative(goodputDict04[key]), label=key+'04', c = colors[-1])
 		colors.pop()
-		plt.plot(range(1001), derivative(goodputDict15[key]), label=key+'15', c = colors[-1])
-		colors.pop()
+		# plt.plot(range(1001), derivative(goodputDict15[key]), label=key+'15', c = colors[-1])
+		# colors.pop()
 
 	plt.xlabel("time") 
 	plt.ylabel("Goodput rate") 
@@ -218,8 +218,8 @@ def analyzeloss():
 	for key in lossDict04.keys():
 		plt.plot(range(1001),difference(lossDict04[key]), label=key+'04', c = colors[-1])
 		colors.pop()
-		plt.plot(range(1001), difference(lossDict15[key]), label=key+'15', c = colors[-1])
-		colors.pop()
+		# plt.plot(range(1001), difference(lossDict15[key]), label=key+'15', c = colors[-1])
+		# colors.pop()
 
 	plt.xlabel("time") 
 	plt.ylabel("Packet loss rate") 
