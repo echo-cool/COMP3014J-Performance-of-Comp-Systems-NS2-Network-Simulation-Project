@@ -1,4 +1,3 @@
-
 # Simulation Topology
 #              n1                  n5
 #               \                  /
@@ -7,6 +6,7 @@
 #   4000Mb,800ms /                \ 4000Mb,800ms
 #               /                  \
 #             n2                   n6 
+
 set ns [new Simulator]
 
 $ns color 1 Blue
