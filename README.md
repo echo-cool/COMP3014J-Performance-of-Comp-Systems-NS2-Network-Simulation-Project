@@ -1,5 +1,5 @@
----
-abstract: |
+
+# Abstract
   This experiment uses ns2 to construct a simulation scenario comprising
   one node and five different line bandwidths and latency. Specifically,
   N3 and N4 nodes serve as a router to connect the networks. The queue
@@ -14,38 +14,6 @@ abstract: |
   DropTail. Then we further analyze the reasons for such different
   performances of RED and DropTail. Furthermore, we conduct experiments
   to determine the best fit scenario of RED and DropTail.
-bibliography:
-- references.bib
----
-
-<div class="titlepage">
-
-<div class="center">
-
-**COMP3014J Performance of Computer Systems**
-
-------------------------------------------------------------------------
-
-  
-**Network Simulation Project Report**  
-
-------------------------------------------------------------------------
-
-  
-**Supervisor:**  
-Dr Nima Afraz  
-
-**Group 9**  
-
-
-<figure>
-
-</figure>
-
-</div>
-
-</div>
-
 
 # Project Introduction
 
@@ -848,73 +816,3 @@ Finally, RED also has network performance issues. The average queue
 length controlled by the RED algorithm often increases as the number of
 connections increases, causing transmission delay jitter and causing
 unstable network performance.
-
-<div class="longtable">
-
-\|l\|l\|l\|l\|l\| & & & &  
-& & & &  
-& & & &  
-& & & &  
-& & & &  
-& & & &  
-& & & &  
-& & & &  
-& & & &  
-& & & &  
-& & & &  
-& & & &  
-& & & &  
-& & & &  
-& & & &  
-& & & &  
-& & & &  
-& & & &  
-& & & &  
-& & & &  
-& & & &  
-& & & &  
-& & & &  
-& & & &  
-& & & &  
-& & & &  
-& & & &  
-& & & &  
-& & & &  
-& & & &  
-& & & &  
-& & & &  
-
-</div>
-
-<div id="tab:my-table">
-
-| Name         | Total Student Score | Total Student Score / Total Tasks Score |
-|:-------------|:--------------------|:---------------------------------------:|
-| Yuyang Wang  | 45                  |                $45/120$                 |
-| Liuxin Yang  | 42                  |                $42/120$                 |
-| Jianxiang Yu | 33                  |                $33/120$                 |
-| Total        | 120                 |                                         |
-| 1-2          |                     |                                         |
-
-Project’s Student Score Breakdown Table
-
-</div>
-
-<div id="tab:my-table">
-
-| Signature: | <img src="images/Yuyang Wang.png" style="width:2in" alt="image" /> |     |       |            |
-|:-----------|:-------------------------------------------------------------------|:----|:------|:-----------|
-| 2-5        | Student 1 Name: Yuyang Wang                                        |     | Date: | 2022/11/04 |
-| Signature: | <img src="images/QQ截图20220930091437.png" style="width:2in"       
-              alt="image" />                                                      |     |       |            |
-|            | Student 2 Name: Liuxin Yang                                        |     | Date: | 2022/11/04 |
-| Signature: | <img src="images/Yu.jpg" style="width:2in" alt="image" />          |     |       |            |
-|            | Student 3 Name: Jianxiang Yu                                       |     | Date: | 2022/11/04 |
-
-Group Member Signature
-
-</div>
-
-The reason for the difference between the group contract and final
-report is that our contribution may differ in practice. Many thanks for
-your understanding.
