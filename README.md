@@ -37,11 +37,6 @@ Dr Nima Afraz
 
 **Group 9**  
 
-|                                             |            |
-|:--------------------------------------------|:-----------|
-| <span class="smallcaps">Wang Yuyang</span>: | *19206226* |
-| <span class="smallcaps">Yang Liuxin</span>: | *19206207* |
-| <span class="smallcaps">Yu Jianxiang</span> | *19206188* |
 
 <figure>
 
@@ -51,11 +46,6 @@ Dr Nima Afraz
 
 </div>
 
-<div class="spacing">
-
-2
-
-</div>
 
 # Project Introduction
 
